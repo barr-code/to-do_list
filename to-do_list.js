@@ -5,6 +5,10 @@ if (Meteor.isClient) {
   Template.body.helpers({
     tasks: function(){
       return Tasks.find({}, {sort: {createdAt: -1}});
+    },
+
+    incompleteCount: function(){
+      return Tasks.find({checked: {$ne: true}}).count();
     }
   });
 
